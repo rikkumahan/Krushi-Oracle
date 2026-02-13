@@ -1,0 +1,170 @@
+{
+    "frontend": {
+        "React": {
+            "category": "FRONTEND",
+            "complexity": 5,
+            "maturity": "MATURE",
+            "learning_curve_months": 2.0
+        },
+        "Next.js": {
+            "category": "FRONTEND",
+            "complexity": 6,
+            "maturity": "STABLE",
+            "learning_curve_months": 2.5
+        },
+        "Vue": {
+            "category": "FRONTEND",
+            "complexity": 4,
+            "maturity": "MATURE",
+            "learning_curve_months": 1.5
+        },
+        "Svelte": {
+            "category": "FRONTEND",
+            "complexity": 4,
+            "maturity": "EMERGING",
+            "learning_curve_months": 1.5
+        },
+        "Angular": {
+            "category": "FRONTEND",
+            "complexity": 7,
+            "maturity": "MATURE",
+            "learning_curve_months": 3.5
+        }
+    },
+    "backend": {
+        "Node.js": {
+            "category": "BACKEND",
+            "complexity": 5,
+            "maturity": "MATURE",
+            "learning_curve_months": 2.0
+        },
+        "FastAPI": {
+            "category": "BACKEND",
+            "complexity": 6,
+            "maturity": "STABLE",
+            "learning_curve_months": 2.0
+        },
+        "Django": {
+            "category": "BACKEND",
+            "complexity": 6,
+            "maturity": "MATURE",
+            "learning_curve_months": 3.0
+        },
+        "Express": {
+            "category": "BACKEND",
+            "complexity": 4,
+            "maturity": "MATURE",
+            "learning_curve_months": 1.5
+        },
+        "Flask": {
+            "category": "BACKEND",
+            "complexity": 5,
+            "maturity": "MATURE",
+            "learning_curve_months": 1.5
+        }
+    },
+    "database": {
+        "PostgreSQL": {
+            "category": "DATABASE",
+            "complexity": 6,
+            "maturity": "MATURE",
+            "learning_curve_months": 3.0
+        },
+        "MongoDB": {
+            "category": "DATABASE",
+            "complexity": 5,
+            "maturity": "MATURE",
+            "learning_curve_months": 2.0
+        },
+        "Redis": {
+            "category": "DATABASE",
+            "complexity": 4,
+            "maturity": "MATURE",
+            "learning_curve_months": 1.0
+        },
+        "Prisma": {
+            "category": "DATABASE",
+            "complexity": 5,
+            "maturity": "STABLE",
+            "learning_curve_months": 2.0
+        },
+        "MySQL": {
+            "category": "DATABASE",
+            "complexity": 6,
+            "maturity": "MATURE",
+            "learning_curve_months": 2.5
+        }
+    },
+    "infrastructure": {
+        "Docker": {
+            "category": "DEVOPS",
+            "complexity": 6,
+            "maturity": "MATURE",
+            "learning_curve_months": 2.0
+        },
+        "Kubernetes": {
+            "category": "DEVOPS",
+            "complexity": 9,
+            "maturity": "STABLE",
+            "learning_curve_months": 6.0
+        },
+        "AWS": {
+            "category": "INFRASTRUCTURE",
+            "complexity": 7,
+            "maturity": "MATURE",
+            "learning_curve_months": 4.0
+        },
+        "Vercel": {
+            "category": "INFRASTRUCTURE",
+            "complexity": 3,
+            "maturity": "STABLE",
+            "learning_curve_months": 0.5
+        },
+        "Heroku": {
+            "category": "INFRASTRUCTURE",
+            "complexity": 3,
+            "maturity": "MATURE",
+            "learning_curve_months": 0.5
+        }
+    },
+    "ai_ml": {
+        "OpenAI API": {
+            "category": "AI_ML",
+            "complexity": 4,
+            "maturity": "STABLE",
+            "learning_curve_months": 1.0
+        },
+        "TensorFlow": {
+            "category": "AI_ML",
+            "complexity": 9,
+            "maturity": "MATURE",
+            "learning_curve_months": 6.0
+        },
+        "PyTorch": {
+            "category": "AI_ML",
+            "complexity": 9,
+            "maturity": "MATURE",
+            "learning_curve_months": 6.0
+        },
+        "Hugging Face": {
+            "category": "AI_ML",
+            "complexity": 7,
+            "maturity": "STABLE",
+            "learning_curve_months": 4.0
+        }
+    },
+    "blockchain": {
+        "Ethereum": {
+            "category": "BLOCKCHAIN",
+            "complexity": 10,
+            "maturity": "STABLE",
+            "learning_curve_months": 8.0
+        },
+        "Solana": {
+            "category": "BLOCKCHAIN",
+            "complexity": 9,
+            "maturity": "EMERGING",
+            "learning_curve_months": 6.0
+        }
+    }
+}

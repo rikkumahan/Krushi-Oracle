@@ -1,0 +1,9 @@
+target/
+mvnw
+mvnw.cmd
+.mvn/
+.git/
+.gitignore
+Dockerfile
+docker-compose.yml
+.env

@@ -1,0 +1,4 @@
+# file: C:\Users\rikku\OneDrive\Desktop\cook\ai-service\services\idea_scorer_v2\mvs_calculator.py
+# hypothesis_version: 6.151.5
+
+[0.15, 0.2, 0.3, 0.35, 0.6, 100, 'A', 'A+', 'A-', 'B', 'B+', 'B-', 'C', 'C+', 'C-', 'COLLAPSING', 'CRITICAL_', 'D', 'DECLINING', 'ELITE_OPPORTUNITY', 'F', 'HIGH_RISK', 'MODERATE_', 'MODERATE_MARKET_RISK', 'NOT_RECOMMENDED', 'RISING', 'RISING_FAST', 'RISKY_MARKET', 'STABLE', 'STRONG_OPPORTUNITY', 'VIABLE_WITH_CAUTION', 'VOLATILE', 'base_mvs', 'capital', 'capital_score', 'capped_mvs', 'competition_score', 'demand_score', 'differentiation', 'dimension_weights', 'execution', 'execution_score', 'inputs_summary', 'market', 'momentum_score', 'quality_gate_impact']

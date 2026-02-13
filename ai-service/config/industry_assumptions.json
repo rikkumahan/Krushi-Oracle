@@ -1,0 +1,27 @@
+{
+    "saas": {
+        "conversion_rate": 0.03,
+        "arpu_annual": 100,
+        "description": "B2B SaaS - Typical 3% conversion, $100/year ARPU"
+    },
+    "ecommerce": {
+        "conversion_rate": 0.04,
+        "arpu_annual": 75,
+        "description": "E-commerce - 4% conversion, $75/year customer value"
+    },
+    "consumer_app": {
+        "conversion_rate": 0.05,
+        "arpu_annual": 30,
+        "description": "Consumer app - 5% conversion, $30/year from ads/subscriptions"
+    },
+    "marketplace": {
+        "conversion_rate": 0.08,
+        "arpu_annual": 120,
+        "description": "Marketplace - 8% conversion, $120/year transaction fees"
+    },
+    "default": {
+        "conversion_rate": 0.10,
+        "arpu_annual": 50,
+        "description": "Default conservative estimates"
+    }
+}

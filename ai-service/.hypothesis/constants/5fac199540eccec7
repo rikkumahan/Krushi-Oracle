@@ -1,0 +1,4 @@
+# file: C:\Users\rikku\OneDrive\Desktop\cook\ai-service\services\idea_scorer_v2\competition_mapper.py
+# hypothesis_version: 6.151.5
+
+[0.0, 0.2, 0.3, 0.4, 0.5, 1.0, 2.0, 100, 500, 600, 1500, 2500, 'CRITICAL', 'EXPLOSIVE', 'EXTREME', 'FRAGMENTED', 'HIGH', 'LOW', 'MINIMAL', 'MODERATE', 'MODERATE_COMPETITION', 'MONOPOLY', 'OLIGOPOLY', 'STAGNANT', 'UNKNOWN', 'VERY_HIGH', 'blog_posts', 'breakdown', 'churn_rate', 'competition_score', 'content_saturation', 'count', 'direct_competitors', 'entry_difficulty', 'exits_12m', 'funding_rounds_12m', 'hhi_index', 'innovation_activity', 'innovation_rate', 'market_concentration', 'market_dynamics', 'market_structure', 'new_entrants_12m', 'patent_filings_12m', 'saturation_level', 'strategic_insight', 'substitute_threat', 'substitutes', 'threat_level', 'top_player_shares', 'youtube_videos']

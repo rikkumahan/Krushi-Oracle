@@ -1,0 +1,30 @@
+# AI Service Dependencies (Latest / Unpinned)
+
+fastapi
+uvicorn[standard]
+pydantic
+openai
+python-dotenv
+sqlalchemy
+alembic
+# asyncpg # omitted for now to reduce risk, stick to sync sqlalchemy or sqlite for local dev
+redis
+httpx
+pydantic-settings
+
+# Universal Validation APIs
+pytrends  # Google Trends
+Pygments  # For YARS (Reddit scraper - source in services/external/yars/)
+requests  # For YARS + other HTTP clients
+redis     # Redis caching layer
+
+# Deterministic Scoring Engine V2
+nltk      # NLP utilities (tokenization, stemming)
+
+# Testing
+hypothesis  # Property-based testing for edge cases
+pytest      # Test framework
+pytest-asyncio  # Async test support
+
+# Performance Monitoring (optional)
+# prometheus-client  # Metrics collection (uncomment if needed)

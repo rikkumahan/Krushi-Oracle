@@ -1,0 +1,8 @@
+2026-02-11 02:57:10,938 - 
+    --- RECEIVED REQUEST ---
+    URL: http://127.0.0.1:8002/api/ideas/generate
+    Method: POST
+    Headers: {'accept-encoding': 'gzip', 'user-agent': 'ReactorNetty/1.1.15', 'host': '127.0.0.1:8002', 'content-type': 'application/json', 'accept': 'application/json', 'content-length': '139'}
+    Body: {"wizard_input":{"target_audience":"Developers","skill_level":"beginner","time_frame":"1_month"},"num_ideas":5,"contrarian_override":false}
+    ------------------------
+    

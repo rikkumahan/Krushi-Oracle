@@ -1,0 +1,37 @@
+{
+  "idea_name": "AI-Powered Code Review Assistant",
+  "sector": "software",
+  "market_validation": {
+    "google_trends_score": 35,
+    "autocomplete_popularity": 85,
+    "wikipedia_interest": 50,
+    "overall_score": 54
+  },
+  "social_proof": {
+    "reddit_engagement": 0,
+    "youtube_coverage": 90,
+    "news_mentions": 2806,
+    "overall_score": 56
+  },
+  "execution_risk": {
+    "complexity_score": 23,
+    "risk_level": "Low",
+    "estimated_months": 10,
+    "key_challenges": [
+      "Standard startup execution risks apply"
+    ]
+  },
+  "overall_confidence": 68,
+  "verdict": "\u2705 VIABLE",
+  "data_quality": {
+    "sources_used": [
+      "Google Trends (Live)",
+      "Google Autocomplete",
+      "Mock (API unavailable)",
+      "Reddit (YARS Scraper)",
+      "YouTube Data API v3",
+      "News API"
+    ],
+    "fallback_count": 1
+  }
+}

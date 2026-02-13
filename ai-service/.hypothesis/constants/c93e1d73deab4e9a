@@ -1,0 +1,4 @@
+# file: C:\Users\rikku\OneDrive\Desktop\cook\ai-service\services\idea_scorer_v2\signal_fusion.py
+# hypothesis_version: 6.151.5
+
+[-0.5, 0.0, 0.001, 0.05, 0.1, 0.15, 0.25, 0.5, 1.0, 100, 500, 1000, 10000, 100000, 10000000, 'ELITE_DEMAND', 'HIGH_DEMAND', 'LOW_DEMAND', 'MINIMAL_DEMAND', 'MODERATE_DEMAND', 'breakdown', 'confidence', 'contribution', 'demand_score', 'google_trends_growth', 'google_trends_volume', 'news_coverage', 'news_diversity', 'normalized', 'raw', 'reddit_activity', 'rule_applied', 'trends_growth', 'trends_volume', 'weight', 'wikipedia_views', 'youtube_count', 'youtube_coverage', 'youtube_engagement']

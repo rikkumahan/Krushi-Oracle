@@ -1,0 +1,78 @@
+{
+    "idea_name": "AI-Powered Smart Home Energy Optimization",
+    "idea_description": "AI platform that learns household energy patterns and automatically optimizes smart home devices to reduce electricity bills by 30-40%.",
+    "target_market": "Homeowners with smart thermostats and energy-conscious consumers",
+    "monthly_searches": 45000,
+    "growth_rate_30d": 0.25,
+    "youtube_video_count": 850,
+    "youtube_total_views": 2400000,
+    "reddit_post_count": 320,
+    "reddit_total_score": 4800,
+    "wikipedia_daily_views": 1200,
+    "news_articles_30d": 45,
+    "news_unique_sources": 18,
+    "trend_values_30d": [
+        380,
+        395,
+        410,
+        425,
+        440,
+        450
+    ],
+    "trend_values_90d": [
+        280,
+        300,
+        320,
+        340,
+        360,
+        380,
+        400,
+        420,
+        440,
+        450
+    ],
+    "trend_values_180d": [
+        180,
+        200,
+        220,
+        240,
+        260,
+        280,
+        300,
+        320,
+        340,
+        360,
+        380,
+        400,
+        420,
+        440,
+        450
+    ],
+    "competitor_count": 12,
+    "top_player_market_shares": [
+        28.0,
+        22.0,
+        18.0,
+        12.0
+    ],
+    "new_entrants_12m": 8,
+    "exits_12m": 2,
+    "substitute_count": 6,
+    "tech_stack": {
+        "technologies": [
+            "React",
+            "FastAPI",
+            "PostgreSQL",
+            "AWS",
+            "OpenAI"
+        ],
+        "team_experience": {
+            "React": "FAMILIAR",
+            "FastAPI": "EXPERT",
+            "PostgreSQL": "FAMILIAR",
+            "AWS": "BEGINNER",
+            "OpenAI": "FAMILIAR"
+        }
+    },
+    "estimated_capital_needed": 250000
+}

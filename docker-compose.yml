@@ -1,0 +1,40 @@
+services:
+  redis:
+    image: redis:alpine
+    container_name: idealab-redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+  ai-service:
+    build: ./ai-service
+    container_name: idealab-ai-service
+    env_file: .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    restart: always
+
+  backend-java:
+    build: ./backend-java
+    container_name: idealab-api-gateway
+    env_file: .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - ai-service
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: idealab-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend-java
+    restart: always
+
+networks:
+  default:
+    name: idealab-network

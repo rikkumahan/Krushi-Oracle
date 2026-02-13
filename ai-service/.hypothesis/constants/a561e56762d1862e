@@ -1,0 +1,4 @@
+# file: C:\Users\rikku\OneDrive\Desktop\cook\ai-service\services\idea_scorer_v2\momentum_analyzer.py
+# hypothesis_version: 6.151.5
+
+[-0.2, -0.1, -0.05, 0.0, 0.05, 0.1, 0.2, 0.3, 0.5, 100, 'COLLAPSING', 'DECLINING', 'FLAT', 'INSUFFICIENT_DATA', 'MODERATE', 'RISING', 'RISING_FAST', 'STABLE', 'STRONG', 'VOLATILE', 'WEAK', 'acceleration', 'breakdown', 'interpretation', 'long_term_180d', 'medium_term_90d', 'momentum_score', 'short_term_30d', 'slope', 'slope_percentage', 'trend_pattern', 'trend_strength', 'volatility', 'weighted_slope']

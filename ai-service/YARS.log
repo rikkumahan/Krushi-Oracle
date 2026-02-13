@@ -1,0 +1,101 @@
+2026-02-12 00:46:39,669 - INFO - YARS Reddit scraper initialized successfully
+2026-02-12 00:46:39,870 - INFO - Starting universal validation for: AI Gourmet Chef
+2026-02-12 00:46:50,634 - INFO - Search request successful
+2026-02-12 00:46:50,636 - INFO - Search Results Retrned 100 Results
+2026-02-12 00:46:50,636 - INFO - YARS: Found 100 posts for 'ai cooking'
+2026-02-12 00:46:50,637 - INFO - Scanning product market for: ai cooking
+2026-02-12 00:46:51,189 - INFO - HTTP Request: GET http://suggestqueries.google.com/complete/search?client=firefox&q=ai+cooking&hl=en "HTTP/1.1 200 OK"
+2026-02-12 00:46:51,190 - INFO - Google Autocomplete: 10 suggestions for 'ai cooking'
+2026-02-12 00:46:51,347 - INFO - HTTP Request: GET https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/ai_cooking/daily/20260113/20260212 "HTTP/1.1 403 Forbidden"
+2026-02-12 00:46:51,348 - ERROR - Wikipedia API Error: Client error '403 Forbidden' for url 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/ai_cooking/daily/20260113/20260212'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2026-02-12 00:46:51,348 - WARNING - Using fallback data for Wikipedia: ai cooking
+2026-02-12 00:46:51,765 - INFO - HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&q=ai+cooking&type=video&maxResults=10&key=AIzaSyC4Myv_XptRQjYzVePbB0JjM-j7Tm2vePc&order=relevance "HTTP/1.1 200 OK"
+2026-02-12 00:46:51,917 - INFO - HTTP Request: GET https://www.googleapis.com/youtube/v3/videos?part=statistics&id=MGarztcOfAU%2Co-_qtqQKY0w%2C4110EG5asTU%2CUvBhcR8ZFa8%2CzMTah3S7Rxc%2CuHPwfFEqjqc%2ChptchvNnsoI%2CqpqUkD8lCeM%2Can9W1H6KHp0&key=AIzaSyC4Myv_XptRQjYzVePbB0JjM-j7Tm2vePc "HTTP/1.1 200 OK"
+2026-02-12 00:46:51,918 - INFO - YouTube: Found 9 videos for 'ai cooking'
+2026-02-12 00:46:52,068 - INFO - HTTP Request: GET https://newsapi.org/v2/everything?q=ai+cooking&from=2026-01-13&to=2026-02-12&language=en&sortBy=relevancy&pageSize=100&apiKey=4ddbefea53404f1d89d6045594d53c29 "HTTP/1.1 200 OK"
+2026-02-12 00:46:52,280 - INFO - News API: Found 223 articles for 'ai cooking'
+2026-02-12 00:46:56,387 - WARNING - Redis error on SET idealab:v2:score:AI_Gourmet_Chef: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.. Falling back to in-memory.
+2026-02-12 00:46:56,387 - INFO - Cached scoring result for AI Gourmet Chef in Redis
+2026-02-12 00:46:56,387 - INFO - Using Azure OpenAI: gpt-4o
+2026-02-12 00:48:22,358 - INFO - YARS Reddit scraper initialized successfully
+2026-02-12 00:48:22,672 - INFO - Starting universal validation for: AI Gourmet Chef
+2026-02-12 00:48:36,706 - INFO - Search request successful
+2026-02-12 00:48:36,709 - INFO - Search Results Retrned 100 Results
+2026-02-12 00:48:36,709 - INFO - YARS: Found 100 posts for 'ai cooking'
+2026-02-12 00:48:36,710 - INFO - Scanning product market for: ai cooking
+2026-02-12 00:48:43,515 - INFO - HTTP Request: GET http://suggestqueries.google.com/complete/search?client=firefox&q=ai+cooking&hl=en "HTTP/1.1 200 OK"
+2026-02-12 00:48:43,516 - INFO - Google Autocomplete: 10 suggestions for 'ai cooking'
+2026-02-12 00:48:44,230 - INFO - HTTP Request: GET https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/ai_cooking/daily/20260113/20260212 "HTTP/1.1 403 Forbidden"
+2026-02-12 00:48:44,230 - ERROR - Wikipedia API Error: Client error '403 Forbidden' for url 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/ai_cooking/daily/20260113/20260212'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2026-02-12 00:48:44,230 - WARNING - Using fallback data for Wikipedia: ai cooking
+2026-02-12 00:48:44,920 - INFO - HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&q=ai+cooking&type=video&maxResults=10&key=AIzaSyC4Myv_XptRQjYzVePbB0JjM-j7Tm2vePc&order=relevance "HTTP/1.1 200 OK"
+2026-02-12 00:48:44,947 - INFO - HTTP Request: GET https://newsapi.org/v2/everything?q=ai+cooking&from=2026-01-13&to=2026-02-12&language=en&sortBy=relevancy&pageSize=100&apiKey=4ddbefea53404f1d89d6045594d53c29 "HTTP/1.1 200 OK"
+2026-02-12 00:48:46,434 - INFO - HTTP Request: GET https://www.googleapis.com/youtube/v3/videos?part=statistics&id=uSZPwrAKzu4%2C5cjWmTmVTIA%2CMGarztcOfAU%2CC44wrCHkzR8%2Co-_qtqQKY0w%2C4110EG5asTU%2Cbw_LgZtl-7Y%2C5eUq7RZn5Mc%2CUvBhcR8ZFa8%2CAOrBaAArj6w&key=AIzaSyC4Myv_XptRQjYzVePbB0JjM-j7Tm2vePc "HTTP/1.1 200 OK"
+2026-02-12 00:48:46,447 - INFO - YouTube: Found 10 videos for 'ai cooking'
+2026-02-12 00:48:46,731 - INFO - News API: Found 223 articles for 'ai cooking'
+2026-02-12 00:48:50,808 - WARNING - Redis error on SET idealab:v2:score:AI_Gourmet_Chef: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.. Falling back to in-memory.
+2026-02-12 00:48:50,808 - INFO - Cached scoring result for AI Gourmet Chef in Redis
+2026-02-12 00:48:50,809 - INFO - Using Azure OpenAI: gpt-4o
+2026-02-12 00:49:35,253 - INFO - YARS Reddit scraper initialized successfully
+2026-02-12 00:49:35,451 - INFO - Starting universal validation for: AI Gourmet Chef
+2026-02-12 00:49:39,873 - INFO - Search request successful
+2026-02-12 00:49:39,875 - INFO - Search Results Retrned 100 Results
+2026-02-12 00:49:39,876 - INFO - YARS: Found 100 posts for 'ai cooking'
+2026-02-12 00:49:39,877 - INFO - Scanning product market for: ai cooking
+2026-02-12 00:49:40,188 - INFO - HTTP Request: GET http://suggestqueries.google.com/complete/search?client=firefox&q=ai+cooking&hl=en "HTTP/1.1 200 OK"
+2026-02-12 00:49:40,188 - INFO - Google Autocomplete: 10 suggestions for 'ai cooking'
+2026-02-12 00:49:40,320 - INFO - HTTP Request: GET https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/ai_cooking/daily/20260113/20260212 "HTTP/1.1 403 Forbidden"
+2026-02-12 00:49:40,320 - ERROR - Wikipedia API Error: Client error '403 Forbidden' for url 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/ai_cooking/daily/20260113/20260212'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2026-02-12 00:49:40,320 - WARNING - Using fallback data for Wikipedia: ai cooking
+2026-02-12 00:49:40,600 - INFO - HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&q=ai+cooking&type=video&maxResults=10&key=AIzaSyC4Myv_XptRQjYzVePbB0JjM-j7Tm2vePc&order=relevance "HTTP/1.1 200 OK"
+2026-02-12 00:49:40,704 - INFO - HTTP Request: GET https://newsapi.org/v2/everything?q=ai+cooking&from=2026-01-13&to=2026-02-12&language=en&sortBy=relevancy&pageSize=100&apiKey=4ddbefea53404f1d89d6045594d53c29 "HTTP/1.1 200 OK"
+2026-02-12 00:49:40,786 - INFO - HTTP Request: GET https://www.googleapis.com/youtube/v3/videos?part=statistics&id=4iAYsXg4cqA%2CMGarztcOfAU%2C4110EG5asTU%2Co-_qtqQKY0w%2CC44wrCHkzR8%2CUvBhcR8ZFa8%2C5eUq7RZn5Mc%2CuHPwfFEqjqc%2CzMTah3S7Rxc%2ChptchvNnsoI&key=AIzaSyC4Myv_XptRQjYzVePbB0JjM-j7Tm2vePc "HTTP/1.1 200 OK"
+2026-02-12 00:49:40,788 - INFO - YouTube: Found 10 videos for 'ai cooking'
+2026-02-12 00:49:43,620 - INFO - News API: Found 223 articles for 'ai cooking'
+2026-02-12 00:49:47,737 - WARNING - Redis error on SET idealab:v2:score:AI_Gourmet_Chef: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.. Falling back to in-memory.
+2026-02-12 00:49:47,737 - INFO - Cached scoring result for AI Gourmet Chef in Redis
+2026-02-12 00:49:47,746 - INFO - Using Azure OpenAI: gpt-4o
+2026-02-12 00:50:12,334 - INFO - YARS Reddit scraper initialized successfully
+2026-02-12 00:50:12,530 - INFO - Starting universal validation for: AI Gourmet Chef V2
+2026-02-12 00:50:15,371 - INFO - Search request successful
+2026-02-12 00:50:15,373 - INFO - Search Results Retrned 100 Results
+2026-02-12 00:50:15,374 - INFO - YARS: Found 100 posts for 'ai cooking'
+2026-02-12 00:50:15,375 - INFO - Scanning product market for: ai cooking
+2026-02-12 00:50:15,829 - INFO - HTTP Request: GET http://suggestqueries.google.com/complete/search?client=firefox&q=ai+cooking&hl=en "HTTP/1.1 200 OK"
+2026-02-12 00:50:15,829 - INFO - Google Autocomplete: 10 suggestions for 'ai cooking'
+2026-02-12 00:50:16,546 - INFO - HTTP Request: GET https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/ai_cooking/daily/20260113/20260212 "HTTP/1.1 403 Forbidden"
+2026-02-12 00:50:16,547 - ERROR - Wikipedia API Error: Client error '403 Forbidden' for url 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/ai_cooking/daily/20260113/20260212'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2026-02-12 00:50:16,547 - WARNING - Using fallback data for Wikipedia: ai cooking
+2026-02-12 00:50:16,586 - INFO - HTTP Request: GET https://newsapi.org/v2/everything?q=ai+cooking&from=2026-01-13&to=2026-02-12&language=en&sortBy=relevancy&pageSize=100&apiKey=4ddbefea53404f1d89d6045594d53c29 "HTTP/1.1 200 OK"
+2026-02-12 00:50:16,622 - INFO - HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&q=ai+cooking&type=video&maxResults=10&key=AIzaSyC4Myv_XptRQjYzVePbB0JjM-j7Tm2vePc&order=relevance "HTTP/1.1 200 OK"
+2026-02-12 00:50:16,721 - INFO - HTTP Request: GET https://www.googleapis.com/youtube/v3/videos?part=statistics&id=4iAYsXg4cqA%2CMGarztcOfAU%2C4110EG5asTU%2Co-_qtqQKY0w%2CC44wrCHkzR8%2CUvBhcR8ZFa8%2C5eUq7RZn5Mc%2CuHPwfFEqjqc%2CzMTah3S7Rxc%2ChptchvNnsoI&key=AIzaSyC4Myv_XptRQjYzVePbB0JjM-j7Tm2vePc "HTTP/1.1 200 OK"
+2026-02-12 00:50:16,724 - INFO - YouTube: Found 10 videos for 'ai cooking'
+2026-02-12 00:50:16,869 - INFO - News API: Found 223 articles for 'ai cooking'
+2026-02-12 00:50:20,977 - WARNING - Redis error on SET idealab:v2:score:AI_Gourmet_Chef_V2: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.. Falling back to in-memory.
+2026-02-12 00:50:20,977 - INFO - Cached scoring result for AI Gourmet Chef V2 in Redis
+2026-02-12 00:50:20,978 - INFO - Using Azure OpenAI: gpt-4o
+2026-02-12 00:50:50,301 - INFO - YARS Reddit scraper initialized successfully
+2026-02-12 00:51:06,146 - INFO - YARS Reddit scraper initialized successfully
+2026-02-12 00:51:06,351 - INFO - Starting universal validation for: AI Gourmet Chef V2
+2026-02-12 00:51:09,020 - INFO - Search request successful
+2026-02-12 00:51:09,023 - INFO - Search Results Retrned 100 Results
+2026-02-12 00:51:09,024 - INFO - YARS: Found 100 posts for 'ai cooking'
+2026-02-12 00:51:09,024 - INFO - Scanning product market for: ai cooking
+2026-02-12 00:51:09,165 - INFO - HTTP Request: GET http://suggestqueries.google.com/complete/search?client=firefox&q=ai+cooking&hl=en "HTTP/1.1 200 OK"
+2026-02-12 00:51:09,165 - INFO - Google Autocomplete: 10 suggestions for 'ai cooking'
+2026-02-12 00:51:09,308 - INFO - HTTP Request: GET https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/ai_cooking/daily/20260113/20260212 "HTTP/1.1 403 Forbidden"
+2026-02-12 00:51:09,309 - ERROR - Wikipedia API Error: Client error '403 Forbidden' for url 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/ai_cooking/daily/20260113/20260212'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2026-02-12 00:51:09,309 - WARNING - Using fallback data for Wikipedia: ai cooking
+2026-02-12 00:51:09,695 - INFO - HTTP Request: GET https://www.googleapis.com/youtube/v3/search?part=snippet&q=ai+cooking&type=video&maxResults=10&key=AIzaSyC4Myv_XptRQjYzVePbB0JjM-j7Tm2vePc&order=relevance "HTTP/1.1 200 OK"
+2026-02-12 00:51:09,807 - INFO - HTTP Request: GET https://www.googleapis.com/youtube/v3/videos?part=statistics&id=o-_qtqQKY0w%2CMGarztcOfAU%2C4iAYsXg4cqA%2CuSZPwrAKzu4%2CTzqIy8IAuK0%2C5cjWmTmVTIA%2CUvBhcR8ZFa8%2C4110EG5asTU%2CC44wrCHkzR8%2CftTNrcnINCA%2Chmv0fABGCwM%2CpXgpcBtOHdk%2CrllBEV-PesE%2CnumR3a8JYTY%2CzMTah3S7Rxc%2Cbw_LgZtl-7Y%2CAOrBaAArj6w%2CUf9hP9xzJIM%2CGQVmvObinbs%2CU8mvZ7rE2CM%2CHq97EUj_DyQ%2CR-p7e3k-jzg%2CkW85SolLuXE%2C412eBLDoTsE%2ChptchvNnsoI&key=AIzaSyC4Myv_XptRQjYzVePbB0JjM-j7Tm2vePc "HTTP/1.1 200 OK"
+2026-02-12 00:51:09,809 - INFO - YouTube: Found 25 videos for 'ai cooking'
+2026-02-12 00:51:10,033 - INFO - HTTP Request: GET https://newsapi.org/v2/everything?q=ai+cooking&from=2026-01-13&to=2026-02-12&language=en&sortBy=relevancy&pageSize=100&apiKey=4ddbefea53404f1d89d6045594d53c29 "HTTP/1.1 200 OK"
+2026-02-12 00:51:10,987 - INFO - News API: Found 223 articles for 'ai cooking'
+2026-02-12 00:51:15,103 - WARNING - Redis error on SET idealab:v2:score:AI_Gourmet_Chef_V2: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.. Falling back to in-memory.
+2026-02-12 00:51:15,104 - INFO - Cached scoring result for AI Gourmet Chef V2 in Redis
+2026-02-12 00:51:15,104 - INFO - Using Azure OpenAI: gpt-4o

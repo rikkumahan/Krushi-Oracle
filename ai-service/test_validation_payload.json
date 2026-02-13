@@ -1,0 +1,19 @@
+{
+    "idea_name": "AI-Powered Code Review Assistant",
+    "idea_description": "Automated code review tool that uses machine learning to detect bugs, security vulnerabilities, and suggest improvements for pull requests across multiple programming languages",
+    "keywords": [
+        "code review",
+        "AI developer tools",
+        "static analysis"
+    ],
+    "sector": "software",
+    "tech_stack": [
+        "Python",
+        "FastAPI",
+        "Machine Learning",
+        "Docker"
+    ],
+    "team_size": 3,
+    "timeline_months": 12,
+    "budget_usd": 150000
+}

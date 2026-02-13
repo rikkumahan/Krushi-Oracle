@@ -1,0 +1,66 @@
+{
+    "synergies": [
+        {
+            "tech1": "Next.js",
+            "tech2": "Vercel",
+            "effect": -1.5,
+            "description": "Next.js + Vercel are built for each other - zero-config deployment"
+        },
+        {
+            "tech1": "React",
+            "tech2": "Next.js",
+            "effect": -1.0,
+            "description": "Next.js is built on React - natural progression"
+        },
+        {
+            "tech1": "Node.js",
+            "tech2": "Express",
+            "effect": -0.5,
+            "description": "Express is the de facto Node.js framework"
+        },
+        {
+            "tech1": "FastAPI",
+            "tech2": "PostgreSQL",
+            "effect": -0.5,
+            "description": "FastAPI + PostgreSQL is a proven Python stack"
+        },
+        {
+            "tech1": "Prisma",
+            "tech2": "PostgreSQL",
+            "effect": -1.0,
+            "description": "Prisma's best ORM experience is with PostgreSQL"
+        },
+        {
+            "tech1": "Django",
+            "tech2": "PostgreSQL",
+            "effect": -0.8,
+            "description": "Django ORM works best with PostgreSQL"
+        }
+    ],
+    "conflicts": [
+        {
+            "tech1": "MongoDB",
+            "tech2": "PostgreSQL",
+            "effect": 2.0,
+            "description": "Mixing SQL and NoSQL adds architectural complexity"
+        },
+        {
+            "tech1": "Django",
+            "tech2": "Node.js",
+            "effect": 1.5,
+            "description": "Mixing Python and JavaScript backend adds context switching"
+        },
+        {
+            "tech1": "Kubernetes",
+            "tech2": "Vercel",
+            "effect": 2.0,
+            "description": "Over-engineering - don't need both"
+        },
+        {
+            "tech1": "TensorFlow",
+            "tech2": "PyTorch",
+            "effect": 1.0,
+            "description": "Pick one ML framework - learning both is inefficient"
+        }
+    ]
+}

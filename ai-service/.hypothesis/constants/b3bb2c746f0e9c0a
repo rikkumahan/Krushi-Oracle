@@ -1,0 +1,4 @@
+# file: C:\Users\rikku\OneDrive\Desktop\cook\ai-service\services\idea_scorer_v2\engine.py
+# hypothesis_version: 6.151.5
+
+[0.15, 0.25, 100, 50000, 250000, 1000000, 5000000, '100%', '180d', '2.0', '2.0-deterministic', '30d', '90d', 'DETERMINISTIC ✅', 'NON-DETERMINISTIC ❌', 'NONE', 'PURE_DETERMINISTIC', 'QUALITY_GATE_MVS', 'actual_count', 'competition_score', 'complexity_rating', 'computation_path', 'confidence', 'demand_score', 'determinism_proof', 'deterministic', 'engine_version', 'estimated_capital', 'execution_score', 'expected_count', 'formula', 'google_trends_growth', 'google_trends_volume', 'idea_description', 'idea_name', 'innovation_5_mvs', 'input', 'is_deterministic', 'llm_usage', 'market_structure', 'momentum_score', 'outputs', 'reproducibility', 'rule_name', 'run_count', 'target_market', 'timestamp', 'trend_pattern', 'unique_scores', 'verdict', 'weights', 'windows', 'youtube_coverage']
