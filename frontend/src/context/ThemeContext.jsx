@@ -1,16 +1,16 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
+    // Check system preference or local storage
     const [theme, setTheme] = useState(() => {
-        // Check local storage or system preference
         if (typeof window !== 'undefined') {
-            const stored = localStorage.getItem('nova-theme');
-            if (stored) return stored;
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'light';
+            const saved = localStorage.getItem('nova-theme');
+            if (saved) return saved;
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
-        return 'light';
+        return 'dark';
     });
 
     useEffect(() => {
@@ -31,5 +31,6 @@ export function ThemeProvider({ children }) {
     );
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const useTheme = () => useContext(ThemeContext);
+export function useTheme() {
+    return useContext(ThemeContext);
+}

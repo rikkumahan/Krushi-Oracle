@@ -2,12 +2,15 @@ from typing import List
 import numpy as np
 import os
 import sys
+import logging
 
 # Add parent directory to path for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from models.comparison_schemas import SimilarCompany
 from utils.openai_helper import get_openai_client
+
+logger = logging.getLogger(__name__)
 
 class SimilarityRanker:
     """Ranks similar companies by semantic similarity to the user's idea"""
@@ -29,9 +32,15 @@ class SimilarityRanker:
         # 1. Get embedding for user idea
         user_text = f"{user_idea} {target_market}"
         try:
+            from openai import AzureOpenAI
+            if not getattr(self.client, "embeddings", None) or isinstance(self.client, AzureOpenAI):
+                # Using a mock/fallback client, or Azure OpenAI (which lacks this specific embedding deployment in free tier)
+                logger.warning("Skipping embeddings for Azure OpenAI (missing deployment). Returning unranked.")
+                return companies
+                
             user_embedding = self._get_embedding(user_text)
         except Exception as e:
-            print(f"Error getting embedding for user idea: {e}")
+            logger.warning(f"Embedding failed. Returning companies unranked.")
             return companies  # Return unranked if embedding fails
         
         # 2. Get embeddings for each company and calculate similarity

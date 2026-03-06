@@ -99,3 +99,4 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-02-12 00:51:15,103 - WARNING - Redis error on SET idealab:v2:score:AI_Gourmet_Chef_V2: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.. Falling back to in-memory.
 2026-02-12 00:51:15,104 - INFO - Cached scoring result for AI Gourmet Chef V2 in Redis
 2026-02-12 00:51:15,104 - INFO - Using Azure OpenAI: gpt-4o
+2026-02-18 10:11:17,057 - INFO - YARS Reddit scraper initialized successfully

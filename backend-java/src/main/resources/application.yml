@@ -2,6 +2,15 @@
 
 server:
   port: 8080
+  compression:
+    enabled: false
+  servlet:
+    context-path: /
+    session:
+      timeout: 30m
+  tomcat:
+    connection-timeout: 120000 
+
 
 spring:
   application:
@@ -27,7 +36,7 @@ spring:
 
 # AI Service Configuration
 ai-service:
-  url: http://127.0.0.1:8002
+  url: http://localhost:8000
   timeout: 30000
 
 # CORS Configuration

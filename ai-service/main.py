@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from core.config import get_settings
-from routers import verification, ideas, assets, universal_validation, scoring_v2, comparison
+from routers import verification, ideas, assets, universal_validation, scoring_v2, comparison, chat, grounded
 import logging
 
 # Configure logging globally (Python Pro best practice)
@@ -53,6 +53,8 @@ def create_app() -> FastAPI:
     app.include_router(universal_validation.router)  # Universal validation
     app.include_router(scoring_v2.router)  # Deterministic Scoring V2
     app.include_router(comparison.router)  # Smart Comparison Search
+    app.include_router(chat.router)  # Conversational Orchestrator
+    app.include_router(grounded.router)  # Grounded Generators (Zero Hallucination)
 
     return app
 

@@ -32,19 +32,6 @@ class TrafficEstimatorService:
     3. Industry benchmark data
     """
     
-    # Industry CPC Benchmarks (Source: WordStream/HubSpot 2024)
-    BENCHMARKS = {
-        "saas": {"cpc": 5.00, "channels": ["LinkedIn", "Google Search"]},
-        "fintech": {"cpc": 8.50, "channels": ["Google Search", "Affiliate"]},
-        "edtech": {"cpc": 3.20, "channels": ["Facebook", "YouTube"]},
-        "ecommerce": {"cpc": 1.10, "channels": ["Instagram", "Google Shopping"]},
-        "health": {"cpc": 4.50, "channels": ["Google Search", "Facebook"]},
-        "ai tools": {"cpc": 2.50, "channels": ["Twitter", "ProductHunt"]},
-        "b2b services": {"cpc": 6.00, "channels": ["LinkedIn", "Email"]},
-    }
-    
-    DEFAULT_CPC = 3.50
-
     def __init__(
         self, 
         trends_service: Optional[GoogleTrendsService] = None,
@@ -57,21 +44,17 @@ class TrafficEstimatorService:
         """
         Estimate traffic with intelligent keyword extraction and multi-keyword trend analysis.
         """
+        from config.domain_defaults import get_domain_config
+        
         # Step 1: Get keywords (user-provided or LLM-generated)
         keywords = await self._get_keywords(request)
         
         # Step 2: Get industry benchmark CPC
-        key = request.industry.lower()
-        data = next((v for k, v in self.BENCHMARKS.items() if k in key), None)
+        domain_config = get_domain_config(request.industry)
         
-        if not data:
-            cpc = self.DEFAULT_CPC
-            channels = ["Google Search", "Facebook"]
-            confidence = 40
-        else:
-            cpc = data["cpc"]
-            channels = data["channels"]
-            confidence = 85
+        cpc = domain_config.get("cpc", 2.50)
+        channels = domain_config.get("traffic_channels", ["Google Search", "Facebook"])
+        confidence = 85 # Higher confidence now that we have extensive mapping
             
         if request.cpc_override:
             cpc = request.cpc_override
@@ -119,69 +102,97 @@ class TrafficEstimatorService:
         )
     
     async def _get_keywords(self, request: TrafficEstimateRequest) -> List[str]:
-        """Get keywords from user input or LLM extraction"""
+        """Get keywords from user input or LLM extraction. Targets 5 keywords to maximize Google Trends comparison."""
         if request.keywords and len(request.keywords) > 0:
-            return request.keywords[:5]  # Use provided keywords
+            return request.keywords[:5]
         
         if not self.keyword_extractor:
-            # Fallback: generate simple keywords
+            # Fallback: generate simple keywords (covers multiple angles)
+            industry = request.industry.lower()
+            audience = request.target_audience.lower()
+            idea = request.idea_name.lower()
             return [
-                f"{request.industry.lower()} software",
-                request.idea_name.lower(),
-                f"{request.target_audience.lower()} {request.industry.lower()}"
-            ][:3]
+                f"{industry} software",
+                idea,
+                f"{industry} automation",
+                f"ai {industry}",
+                f"{audience} {industry}"
+            ][:5]
         
-        # Use LLM to extract keywords
+        # Use LLM to extract 5 multi-angle keywords
         from services.external.keyword_extractor import KeywordExtractionRequest
         extraction_request = KeywordExtractionRequest(
             idea_name=request.idea_name,
             idea_description=request.idea_description,
             industry=request.industry,
             target_audience=request.target_audience,
-            num_keywords=3
+            num_keywords=5  # Max for Google Trends comparison
         )
         
         result = await self.keyword_extractor.extract_keywords(extraction_request)
-        return result.primary_keywords
+        return result.primary_keywords[:5]
     
     async def _analyze_keywords_trends(self, keywords: List[str]) -> Dict:
-        """Fetch and aggregate Google Trends data for multiple keywords"""
-        trends_data = []
+        """
+        Fetch Google Trends data for all keywords in a SINGLE batched comparison call.
+        This is the Gemini-style approach: one request, 5 keywords, rich comparative data.
+        """
+        if not keywords:
+            return {
+                "keywords_data": [],
+                "average_market_interest": 50,
+                "has_trending_keyword": False,
+                "data_quality": "mock",
+                "live_data_percentage": 0
+            }
         
-        for keyword in keywords:
-            try:
-                trend_info = await self.trends.get_interest_over_time(keyword)
+        try:
+            # ONE batched API call to SerpApi for all 5 keywords simultaneously
+            comparison = await self.trends.compare_keywords(keywords)
+            scores = comparison.get("scores", {})
+            winner = comparison.get("winner", keywords[0])
+            data_source = comparison.get("data_source", "Mock")
+            
+            # Map the comparison scores back to the expected per-keyword schema
+            trends_data = []
+            for kw in keywords:
+                score = scores.get(kw, 50)
                 trends_data.append({
-                    "keyword": keyword,
-                    "trend": trend_info.get("trend", "Stable"),
-                    "average_interest": trend_info.get("average_interest", 0),
-                    "current_interest": trend_info.get("current_interest", 0),
-                    "is_trending": trend_info.get("is_trending", False),
-                    "data_source": trend_info.get("data_source", "Mock")
+                    "keyword": kw,
+                    "trend": "Rising" if kw == winner else "Stable",
+                    "average_interest": score,
+                    "current_interest": score,
+                    "is_trending": kw == winner,
+                    "data_source": data_source
                 })
-            except Exception as e:
-                print(f"Failed to fetch trends for '{keyword}': {e}")
-                trends_data.append({
-                    "keyword": keyword,
-                    "trend": "Stable",
-                    "average_interest": 50,
-                    "current_interest": 50,
-                    "is_trending": False,
-                    "data_source": "Mock (Error)"
-                })
-        
-        # Aggregate insights
-        avg_interest = sum(t["average_interest"] for t in trends_data) / len(trends_data) if trends_data else 0
-        any_trending = any(t["is_trending"] for t in trends_data)
-        live_data_count = sum(1 for t in trends_data if "Live" in t["data_source"])
-        
-        return {
-            "keywords_data": trends_data,
-            "average_market_interest": int(avg_interest),
-            "has_trending_keyword": any_trending,
-            "data_quality": "live" if live_data_count > 0 else "mock",
-            "live_data_percentage": int((live_data_count / len(trends_data)) * 100) if trends_data else 0
-        }
+            
+            avg_interest = sum(scores.values()) / len(scores) if scores else 50
+            is_live = "SerpApi" in data_source
+            
+            return {
+                "keywords_data": trends_data,
+                "average_market_interest": int(avg_interest),
+                "has_trending_keyword": True,  # There is always a winner in a comparison
+                "winner_keyword": winner,
+                "data_quality": "live" if is_live else "mock",
+                "live_data_percentage": 100 if is_live else 0
+            }
+            
+        except Exception as e:
+            import logging
+            logging.getLogger(__name__).warning(f"Google Trends batch comparison failed: {e}. Using fallback.")
+            # Graceful fallback: return neutral scores for all keywords
+            trends_data = [{
+                "keyword": kw, "trend": "Stable", "average_interest": 50,
+                "current_interest": 50, "is_trending": False, "data_source": "Mock (Error)"
+            } for kw in keywords]
+            return {
+                "keywords_data": trends_data,
+                "average_market_interest": 50,
+                "has_trending_keyword": False,
+                "data_quality": "mock",
+                "live_data_percentage": 0
+            }
     
     def _aggregate_trend_direction(self, trend_insights: Dict) -> str:
         """Determine overall trend from multiple keywords"""

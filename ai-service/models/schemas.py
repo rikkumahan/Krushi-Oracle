@@ -25,6 +25,7 @@ class WizardInput(BaseModel):
     industry: str
     target_audience: str
     skill_level: SkillLevel
+    skills: List[str] = []
     budget: int = Field(..., ge=0)
     time_frame: TimeFrame
     interests: Optional[str] = None
@@ -63,10 +64,11 @@ class StartupIdea(BaseModel):
     name: str = "Untitled"
     tagline: str = ""
     description: str = ""
+    industry: Optional[str] = "Software" # Default to Software for now, but nullable
     target_customer: str = ""
     problem_solved: str = ""
     mvp_features: List[MVPFeature] = []
-    business_model: BusinessModelSnippet
+    business_model: Optional[BusinessModelSnippet] = None
     moonshot_channel: str = ""
     estimated_initial_cost: int = 0
     score: Optional[Dict[str, Any]] = None

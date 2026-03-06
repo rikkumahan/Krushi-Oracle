@@ -21,6 +21,7 @@ class Settings(BaseSettings):
     AZURE_OPENAI_API_VERSION: str = "2024-12-01-preview"
     
     # Universal Validation API Keys
+    SERPAPI_KEY: Optional[str] = None
     YOUTUBE_API_KEY: Optional[str] = None
     NEWS_API_KEY: Optional[str] = None
     

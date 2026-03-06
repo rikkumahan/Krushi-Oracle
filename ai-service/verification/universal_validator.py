@@ -61,6 +61,13 @@ class UniversalValidationResult(BaseModel):
     youtube_coverage: int
     news_mentions: int
     
+    # MVS Outputs (Added for Orchestrator compatibility)
+    validation_class: str = "Uncertain"
+    recommendations: List[str] = []
+    competitive_moat_score: int = 0
+    capital_efficiency_score: int = 0
+    execution_risk_score: int = 0
+    
     # Sector-Specific Metrics (Innovation)
     sector_signals: Dict = {}
     
@@ -279,6 +286,14 @@ class UniversalValidatorService:
             market_validation_score=int(mvs_result.market_dimension),
             social_proof_score=int(signals.total_views // 1000),
             overall_confidence=int(mvs_result.mvs_score),
+            
+            # MVS Mappings
+            validation_class=mvs_result.validation_class,
+            recommendations=mvs_result.recommendations,
+            competitive_moat_score=int(mvs_result.differentiation_dimension),
+            capital_efficiency_score=int(mvs_result.capital_dimension),
+            execution_risk_score=int(mvs_result.execution_dimension),
+            
             data_sources_used=sources_used,
             fallback_count=int(fallback_count)
         )

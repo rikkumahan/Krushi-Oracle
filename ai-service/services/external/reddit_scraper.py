@@ -4,6 +4,7 @@ NO API credentials needed - web scraping approach
 """
 
 import logging
+import asyncio
 from typing import Dict, List, Optional
 from services.redis_cache import cached
 
@@ -60,8 +61,8 @@ class RedditScraperService:
     async def _search_global(self, keyword: str, limit: int) -> Dict:
         """Search all of Reddit for keyword"""
         try:
-            # Use YARS search_reddit method
-            results = self.scraper.search_reddit(keyword, limit=min(limit, 100))
+            # Use YARS search_reddit method (run in thread pool to avoid blocking)
+            results = await asyncio.to_thread(self.scraper.search_reddit, keyword, limit=min(limit, 100))
             
             if not results:
                 return self._get_fallback_data(keyword)

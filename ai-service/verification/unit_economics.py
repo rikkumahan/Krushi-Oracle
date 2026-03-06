@@ -22,6 +22,9 @@ class UnitEconomicsResult(BaseModel):
     is_viable: bool
     viability_score: int # 0-100
     kill_reason: Optional[str] = None
+    monthly_burn: float = 10000.0
+    months_to_profitability: float = 12.0
+    runway_months: float = 18.0
 
 class UnitEconomicsSimulator:
     
@@ -68,5 +71,8 @@ class UnitEconomicsSimulator:
             payback_months=round(payback, 1),
             is_viable=is_viable,
             viability_score=score,
-            kill_reason=reason
+            kill_reason=reason,
+            monthly_burn=10000.0,  # Default MVP burn
+            months_to_profitability=12.0,  # Default assumption
+            runway_months=18.0  # Default assumption
         )

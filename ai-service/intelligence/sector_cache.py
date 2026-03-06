@@ -1,60 +1,36 @@
 from typing import Dict, Optional
 import os
 import json
-try:
-    import redis
-except ImportError:
-    redis = None
+from utils.redis_cache import cache_db
 
 class SectorCache:
     """
-    Simulated Redis Cache for Sector Intelligence.
-    In Turbo Sprint, we might just use an in-memory dictionary if Redis isn't up.
+    SQLite-backed Cache for Sector Intelligence.
     """
     
     def __init__(self):
-        self.redis_url = os.getenv("REDIS_URL", "redis://localhost:6379")
-        self.client = None
-        if redis:
-            try:
-                self.client = redis.from_url(self.redis_url, decode_responses=True)
-                self.client.ping()
-            except Exception as e:
-                print(f"Redis connection failed: {e}. Using in-memory cache.")
-                self.client = None
-        
-        # In-memory fallback
-        self._local_cache = {}
+        self.db = cache_db
 
     def get_sector_data(self, sector: str) -> Optional[Dict]:
         """Retrieve cached sector data"""
         key = f"sector:{sector.lower()}"
         
-        # 1. Try Redis
-        if self.client:
+        data = self.db.get(key)
+        if data:
             try:
-                data = self.client.get(key)
-                if data:
-                    return json.loads(data)
+                return json.loads(data.decode('utf-8'))
             except Exception:
                 pass
-        
-        # 2. Try Local Memory
-        return self._local_cache.get(key)
+                
+        return None
 
     def set_sector_data(self, sector: str, data: Dict, ttl: int = 3600):
         """Cache sector data"""
         key = f"sector:{sector.lower()}"
-        
-        # 1. Write to Redis
-        if self.client:
-            try:
-                self.client.setex(key, ttl, json.dumps(data))
-            except Exception:
-                pass
-        
-        # 2. Write to Local Memory
-        self._local_cache[key] = data
+        try:
+            self.db.set(key, json.dumps(data).encode('utf-8'), ttl)
+        except Exception:
+            pass
 
     def get_mock_intelligence(self, sector: str) -> Dict:
         """

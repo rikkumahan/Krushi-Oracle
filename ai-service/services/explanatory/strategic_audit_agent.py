@@ -547,3 +547,69 @@ Use the available tools to answer this question with strategic depth. Cite speci
             data_cited=data_cited,
             confidence="LOW"
         )
+
+    async def audit_idea_light(
+        self, 
+        idea_name: str, 
+        idea_description: str,
+        industry: str,
+        target_audience: str
+    ) -> ExplanationResponse:
+        """
+        Perform a preliminary strategic audit based on idea inputs.
+        This runs in parallel with other validators before full scoring is available.
+        """
+        
+        prompt = f"""
+        Perform a preliminary 30-second strategic audit on this startup idea.
+        
+        Idea: {idea_name}
+        Description: {idea_description}
+        Industry: {industry}
+        Target Audience: {target_audience}
+        
+        Evaluate:
+        1. Market Timing (Why now?)
+        2. Problem/Solution Fit (Is the pain real?)
+        3. Strategic Risks (Competition, Adoption)
+        
+        Output a concise 2-sentence strategic summary and a confidence level (HIGH/MEDIUM/LOW).
+        Format: "Summary: [Text] | Confidence: [Level]"
+        """
+        
+        try:
+            response = await asyncio.to_thread(
+                self.client.chat.completions.create,
+                model=self.MODEL_NAME,
+                messages=[
+                    {"role": "system", "content": "You are a skeptical VC analyst performing a rapid triage audit."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.3, # Low for consistency
+                max_tokens=150
+            )
+            
+            content = response.choices[0].message.content.strip()
+            
+            # Simple parsing (robust fallback)
+            confidence = "MEDIUM"
+            if "Confidence: HIGH" in content: confidence = "HIGH"
+            elif "Confidence: LOW" in content: confidence = "LOW"
+            
+            summary = content.split("|")[0].replace("Summary:", "").strip()
+            
+            return ExplanationResponse(
+                answer=summary,
+                confidence=confidence,
+                tools_used=["Strategic Heuristics (Light Audit)"],
+                data_cited=[]
+            )
+            
+        except Exception as e:
+            # Fallback if LLM fails
+            return ExplanationResponse(
+                answer="Preliminary audit unavailable due to connection error.",
+                confidence="LOW",
+                tools_used=[],
+                data_cited=[]
+            )

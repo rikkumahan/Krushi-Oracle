@@ -21,7 +21,10 @@ class WikipediaPageviewsService:
     BASE_URL = "https://wikimedia.org/api/rest_v1/metrics/pageviews"
     
     def __init__(self, cache=None):
-        self.client = httpx.AsyncClient(timeout=10.0)
+        headers = {
+            "User-Agent": "NovaIdeaLab/1.0 (https://nova.io; dev@nova.io) httpx/0.27.0"
+        }
+        self.client = httpx.AsyncClient(timeout=10.0, headers=headers)
         self.cache = cache  # Redis cache service
     
     @cached(prefix="wikipedia", ttl=43200)  # 12 hours - pageviews are historical

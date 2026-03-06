@@ -57,16 +57,18 @@ class KeywordExtractorService:
         if not client:
             return self._mock_keywords(request)
         
-        system_prompt = """You are a market research expert specializing in keyword analysis.
-Your task is to identify the exact search terms that potential customers would use when looking for solutions in this space.
+        system_prompt = """You are a Google Trends keyword expert. Your job is to generate exactly {num_keywords} short, high-intent search terms (1-3 words MAX each) that cover different strategic angles of a startup idea.
 
-Focus on:
-1. High-intent commercial keywords (what people search when ready to buy/use)
-2. Natural language queries (how people actually search)
-3. Competitor/category keywords (existing solutions in this space)
-4. Problem-focused keywords (the pain point being solved)
+These are NOT descriptions. They are the exact short phrases people type into Google Trends or Google Search.
 
-Return ONLY valid JSON."""
+Generate keywords that cover these 5 angles:
+1. BROAD CATEGORY - The overall market/industry space (e.g. "tax software")
+2. TECH NICHE - The specific AI/tech application (e.g. "ai accounting")
+3. CORE PROBLEM - The pain point being solved (e.g. "corporate tax")
+4. SOLUTION ACTION - What the product does as a verb (e.g. "tax automation")
+5. COMPETITOR/BENCHMARK - An established alternative in the space (e.g. "accounting software")
+
+Return ONLY valid JSON. No extra text."""
 
         user_prompt = f"""
 Idea: {request.idea_name}
@@ -74,13 +76,12 @@ Description: {request.idea_description}
 Industry: {request.industry}
 Target Audience: {request.target_audience}
 
-Extract {request.num_keywords} primary search keywords that potential customers would use to find this solution.
-Include both short-tail (1-2 words) and long-tail (3-4 words) keywords.
+Generate exactly {request.num_keywords} short Google Trends keywords (1-3 words max each), one per angle described.
 
 Return as JSON:
 {{
-  "primary_keywords": ["keyword1", "keyword2", ...],
-  "related_keywords": ["related1", "related2", ...],
+  "primary_keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"],
+  "related_keywords": ["related1", "related2"],
   "reasoning": "Brief explanation of why these keywords were chosen"
 }}
 """
