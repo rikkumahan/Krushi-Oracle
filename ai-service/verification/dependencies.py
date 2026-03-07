@@ -13,6 +13,7 @@ from services.external.wikipedia_pageviews import WikipediaPageviewsService
 from services.external.software_scanner import SoftwareScannerService
 from services.external.healthcare_scanner import HealthcareScannerService
 from services.external.product_scanner import ProductScannerService
+from services.external.query_generator import QueryGeneratorService
 from verification.execution_risk import ExecutionRiskAnalyzer
 from verification.universal_validator import UniversalValidatorService
 from services.redis_cache import get_cache_service
@@ -41,6 +42,7 @@ def get_universal_validator() -> UniversalValidatorService:
     product = ProductScannerService()
     
     execution = ExecutionRiskAnalyzer()
+    query_gen = QueryGeneratorService()
     
     # Create validator with all dependencies
     validator = UniversalValidatorService(
@@ -53,7 +55,8 @@ def get_universal_validator() -> UniversalValidatorService:
         software_scanner=software,
         healthcare_scanner=healthcare,
         product_scanner=product,
-        execution_analyzer=execution
+        execution_analyzer=execution,
+        query_gen=query_gen
     )
     
     return validator

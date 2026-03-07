@@ -17,6 +17,7 @@ from services.external.wikipedia_pageviews import WikipediaPageviewsService
 from services.external.software_scanner import SoftwareScannerService
 from services.external.healthcare_scanner import HealthcareScannerService
 from services.external.product_scanner import ProductScannerService
+from services.external.query_generator import QueryGeneratorService
 from verification.execution_risk import ExecutionRiskAnalyzer, ExecutionRiskInput
 
 # V2 Scoring Innovations
@@ -104,7 +105,8 @@ class UniversalValidatorService:
         software_scanner: SoftwareScannerService,
         healthcare_scanner: HealthcareScannerService,
         product_scanner: ProductScannerService,
-        execution_analyzer: ExecutionRiskAnalyzer
+        execution_analyzer: ExecutionRiskAnalyzer,
+        query_gen: QueryGeneratorService = None
     ):
         self.trends = trends_service
         self.autocomplete = autocomplete_service
@@ -116,6 +118,7 @@ class UniversalValidatorService:
         self.healthcare = healthcare_scanner
         self.product = product_scanner
         self.execution = execution_analyzer
+        self.query_gen = query_gen or QueryGeneratorService()  # Injected or auto-created
         
         # V2 Scoring Engines
         self.fusion_scorer = CompositeSignalScorer()
@@ -130,14 +133,21 @@ class UniversalValidatorService:
         
         primary_keyword = request.keywords[0] if request.keywords else request.idea_name
         
-        # Parallel execution of core tasks
+        # Step 0: Generate platform-specific queries (one LLM call upfront)
+        queries = await self.query_gen.generate(
+            idea_name=request.idea_name,
+            description=request.keywords[1] if len(request.keywords) > 1 else request.idea_name,
+            primary_keyword=primary_keyword
+        )
+        
+        # Parallel execution of core tasks using platform-optimized queries
         core_tasks = [
-            self.trends.get_interest_over_time(primary_keyword),
-            self.autocomplete.get_suggestions(primary_keyword),
-            self.wikipedia.get_pageviews(primary_keyword),
-            self.reddit.search_discussions(primary_keyword),
-            self.youtube.search_videos(primary_keyword),
-            self.news.search_articles(primary_keyword)
+            self.trends.get_interest_over_time(primary_keyword),           # Short keyword best for Trends
+            self.autocomplete.get_suggestions(primary_keyword),             # Short keyword best for Autocomplete
+            self.wikipedia.get_pageviews(queries.wikipedia_query),          # Exact article title
+            self.reddit.search_discussions(queries.reddit_query),           # Conversational pain-point
+            self.youtube.search_videos(queries.youtube_query),              # Tutorial/review style
+            self.news.search_articles(queries.news_query)                   # Industry trend style
         ]
         
         # Add sector-specific task
