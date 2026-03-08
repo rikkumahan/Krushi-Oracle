@@ -19,6 +19,11 @@ class Settings(BaseSettings):
     AZURE_OPENAI_KEY: Optional[str] = None
     AZURE_OPENAI_DEPLOYMENT: Optional[str] = "gpt-4o"
     AZURE_OPENAI_API_VERSION: str = "2024-12-01-preview"
+
+    # Sarvam.ai Configuration (free LLM, used if Azure/OpenAI not configured)
+    SARVAM_API_KEY: Optional[str] = None
+    SARVAM_MODEL: str = "sarvam-105b"
+    SARVAM_BASE_URL: str = "https://api.sarvam.ai/v1"
     
     # Universal Validation API Keys
     SERPAPI_KEY: Optional[str] = None
@@ -47,7 +52,7 @@ class Settings(BaseSettings):
     # Integration
     JAVA_BACKEND_URL: str = "http://localhost:8080"
 
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+    model_config = SettingsConfigDict(env_file=(".env", "../.env"), extra="ignore")
 
 @lru_cache
 def get_settings() -> Settings:

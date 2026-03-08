@@ -18,12 +18,13 @@ Usage:
 """
 
 import json
+import re
 import asyncio
 import logging
 from pydantic import BaseModel
 from typing import Optional
 
-from utils.openai_helper import get_openai_client, get_model_name
+from utils.openai_helper import create_chat_completion
 
 logger = logging.getLogger(__name__)
 
@@ -56,12 +57,17 @@ PLATFORM RULES:
 Return ONLY valid JSON with these exact keys."""
 
     def __init__(self):
-        self._client = None
+        pass  # No client caching needed — create_chat_completion handles it
 
-    def _get_client(self):
-        if not self._client:
-            self._client = get_openai_client()
-        return self._client
+    @staticmethod
+    def _clean_json(raw: str) -> str:
+        """Strip markdown code fences if the LLM wraps response in ```json ... ```."""
+        raw = raw.strip()
+        # Remove opening fence: ```json\n or ```\n
+        raw = re.sub(r"^```(?:json)?\s*", "", raw)
+        # Remove closing fence
+        raw = re.sub(r"\s*```$", "", raw)
+        return raw.strip()
 
     async def generate(
         self,
@@ -72,13 +78,11 @@ Return ONLY valid JSON with these exact keys."""
         """
         Generate platform-specific queries. Falls back gracefully if LLM fails.
         """
-        client = self._get_client()
         fallback_kw = primary_keyword or idea_name.lower()
 
-        if not client:
-            return self._fallback(fallback_kw)
-
-        user_prompt = f"""Startup Idea: {idea_name}
+        messages = [
+            {"role": "system", "content": self._SYSTEM_PROMPT},
+            {"role": "user", "content": f"""Startup Idea: {idea_name}
 Description: {description}
 Core Keyword: {fallback_kw}
 
@@ -90,23 +94,27 @@ Return as JSON:
   "youtube_query": "...",
   "news_query": "...",
   "wikipedia_query": "..."
-}}"""
+}}"""}
+        ]
 
         try:
             def _call():
-                return client.chat.completions.create(
-                    model=get_model_name(),
-                    messages=[
-                        {"role": "system", "content": self._SYSTEM_PROMPT},
-                        {"role": "user", "content": user_prompt}
-                    ],
-                    response_format={"type": "json_object"},
+                # create_chat_completion handles Sarvam.ai compatibility automatically
+                return create_chat_completion(
+                    messages=messages,
                     temperature=0.4,
-                    max_tokens=200
+                    max_tokens=200,
+                    response_format={"type": "json_object"}
                 )
 
             response = await asyncio.to_thread(_call)
-            data = json.loads(response.choices[0].message.content)
+
+            if not response:
+                raise ValueError("No response from LLM")
+
+            raw_content = response.choices[0].message.content
+            cleaned = self._clean_json(raw_content)
+            data = json.loads(cleaned)
 
             queries = QuerySet(
                 reddit_query=data.get("reddit_query", fallback_kw),
@@ -126,6 +134,7 @@ Return as JSON:
         except Exception as e:
             logger.warning(f"QueryGeneratorService LLM call failed: {e}. Using fallback queries.")
             return self._fallback(fallback_kw)
+
 
     def _fallback(self, keyword: str) -> QuerySet:
         """Safe fallback: use the primary keyword for all platforms."""

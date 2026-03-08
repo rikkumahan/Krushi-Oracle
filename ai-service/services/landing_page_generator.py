@@ -16,7 +16,7 @@ class LandingPageResponse(BaseModel):
     html_content: str
     preview_url: Optional[str] = None # For future use
 
-from utils.openai_helper import get_openai_client, get_model_name
+from utils.openai_helper import get_openai_client, get_model_name, create_chat_completion
 from services.landing_page_components import ComponentTemplates, LandingPageComponentSet
 import json
 import logging
@@ -122,8 +122,7 @@ class LandingPageGeneratorService:
         }}
         """
         
-        response = client.chat.completions.create(
-            model=self._get_model(),
+        response = create_chat_completion(
             messages=[{"role": "user", "content": prompt}],
             response_format={"type": "json_object"},
             temperature=0.7

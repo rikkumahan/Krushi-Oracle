@@ -16,7 +16,7 @@ import jakarta.validation.Valid;
  */
 @RestController
 @RequestMapping("/api/ideas")
-@CrossOrigin(origins = { "http://localhost:5173", "http://localhost:3000" })
+@CrossOrigin(origins = "*")
 public class IdeaController {
 
     private final IdeaService ideaService;

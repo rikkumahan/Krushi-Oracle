@@ -1,13 +1,24 @@
 import axios from 'axios';
 
-// Point to Java Backend
-const API_BASE_URL = 'http://localhost:8080/api';
+// Point to Java Backend — override via VITE_API_BASE_URL in .env.local
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
+
+// Generate a unique session ID once per browser tab
+function getSessionId() {
+    let id = sessionStorage.getItem('nova_session_id');
+    if (!id) {
+        id = 'user_' + Math.random().toString(36).slice(2, 8).toUpperCase();
+        sessionStorage.setItem('nova_session_id', id);
+    }
+    return id;
+}
 
 export const client = axios.create({
     baseURL: API_BASE_URL,
     timeout: 120000, // 2 minutes for long-running AI tasks
     headers: {
         'Content-Type': 'application/json',
+        'X-Session-ID': getSessionId(),
     }
 });
 

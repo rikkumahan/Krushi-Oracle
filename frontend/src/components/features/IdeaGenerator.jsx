@@ -31,29 +31,31 @@ export function IdeaGenerator({ onComplete }) {
         try {
             const response = await api.generateIdeas(formData);
             setResults(response.ideas);
-            setStep(3); // Results view
+            setStep(3);
         } catch (error) {
             console.error("Generation failed:", error);
-            // Handle error state
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div className="h-full flex flex-col items-center justify-center p-8 overflow-y-auto">
+        // Reduced padding on mobile; overflow scroll from parent handles the page
+        <div className="flex flex-col items-center justify-center p-4 md:p-8">
             {step === 1 && (
                 <div className="w-full max-w-2xl animate-fade-in">
-                    <div className="text-center mb-10">
-                        <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl mx-auto flex items-center justify-center mb-4 shadow-xl shadow-indigo-500/20">
-                            <Zap className="w-8 h-8 text-white" />
+                    <div className="text-center mb-6 md:mb-10">
+                        <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl mx-auto flex items-center justify-center mb-4 shadow-xl shadow-indigo-500/20">
+                            <Zap className="w-6 h-6 md:w-8 md:h-8 text-white" />
                         </div>
-                        <h1 className="text-4xl font-bold text-white mb-4">Startup Idea Generator</h1>
-                        <p className="text-slate-400 text-lg">Define your constraints. We'll find the opportunities.</p>
+                        {/* Scaled heading: smaller on mobile */}
+                        <h1 className="text-2xl md:text-4xl font-bold text-white mb-3">Startup Idea Generator</h1>
+                        <p className="text-slate-400 text-sm md:text-lg">Define your constraints. We'll find the opportunities.</p>
                     </div>
 
-                    <div className="space-y-6 bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-xl">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Reduced inner padding on mobile */}
+                    <div className="space-y-5 bg-white/5 p-4 md:p-8 rounded-3xl border border-white/10 backdrop-blur-xl">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-slate-300">Industry / Sector</label>
                                 <div className="relative">
@@ -112,7 +114,7 @@ export function IdeaGenerator({ onComplete }) {
                         </div>
 
                         <Button
-                            className="w-full py-4 text-lg font-semibold bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 shadow-lg shadow-indigo-500/25"
+                            className="w-full py-3 md:py-4 text-base md:text-lg font-semibold bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 shadow-lg shadow-indigo-500/25"
                             onClick={handleGenerate}
                             disabled={loading || !formData.industry}
                         >
@@ -133,13 +135,15 @@ export function IdeaGenerator({ onComplete }) {
             )}
 
             {step === 3 && results && (
-                <div className="w-full max-w-5xl animate-fade-in pb-20">
-                    <div className="flex items-center justify-between mb-8">
+                <div className="w-full max-w-5xl animate-fade-in pb-8">
+                    {/* Results header — stacks vertically on mobile, side-by-side on sm+ */}
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6 md:mb-8">
                         <div>
-                            <h2 className="text-3xl font-bold text-white">Generated Opportunities</h2>
-                            <p className="text-slate-400">Based on {formData.industry} analysis</p>
+                            <h2 className="text-2xl md:text-3xl font-bold text-white">Generated Opportunities</h2>
+                            <p className="text-slate-400 text-sm md:text-base">Based on {formData.industry} analysis</p>
                         </div>
-                        <div className="flex gap-2">
+                        {/* Buttons wrap neatly on mobile */}
+                        <div className="flex flex-wrap gap-2">
                             <Button variant="ghost" onClick={() => setStep(1)}>Generate More</Button>
                             <Button
                                 className="bg-white text-black hover:bg-slate-200"
@@ -151,19 +155,19 @@ export function IdeaGenerator({ onComplete }) {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                         {results.map((idea, idx) => (
-                            <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all hover:scale-[1.02] cursor-pointer group">
+                            <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-5 md:p-6 hover:bg-white/10 transition-all hover:scale-[1.02] cursor-pointer group">
                                 <div className="flex items-start justify-between mb-4">
-                                    <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
-                                        <Lightbulb className="w-6 h-6" />
+                                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                                        <Lightbulb className="w-5 h-5 md:w-6 md:h-6" />
                                     </div>
-                                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-500/20 text-green-400 border border-green-500/20">
-                                        Validation: High
+                                    <span className="px-2 py-1 rounded-full text-xs font-medium bg-green-500/20 text-green-400 border border-green-500/20">
+                                        High Validity
                                     </span>
                                 </div>
 
-                                <h3 className="text-xl font-bold text-white mb-2">{idea.name}</h3>
+                                <h3 className="text-lg md:text-xl font-bold text-white mb-2">{idea.name}</h3>
                                 <p className="text-slate-400 text-sm mb-4 line-clamp-3">{idea.description}</p>
 
                                 <div className="space-y-3 pt-4 border-t border-white/5">
@@ -179,9 +183,8 @@ export function IdeaGenerator({ onComplete }) {
                             </div>
                         ))}
                     </div>
-                </div >
-            )
-            }
-        </div >
+                </div>
+            )}
+        </div>
     );
 }

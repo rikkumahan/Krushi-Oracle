@@ -1,0 +1,51 @@
+## Key Features
+Trained on the 10 most-spoken Indian languages with support for native script, romanized, and code-mixed inputs. Wins 89% of pairwise comparisons on Indian language benchmarks and 87% on STEM, math, and coding.
+Mixture-of-Experts Transformer with 128 sparse experts and only 2.4B active parameters per token, enabling high throughput with 3x–6x gains on H100 and local execution on Apple Silicon via MXFP4.
+Achieves 97.0 on Math500, 92.1 on HumanEval, 92.7 on MBPP, and 88.3 on AIME 25 (96.7 with tools) — exceeding typical expectations for models with similar active compute.
+Native tool calling with strong performance on BrowseComp (35.5) and Tau2 (45.7) for web-search-driven tasks, planning, retrieval, and multi-step task execution.
+
+## Learn More
+For detailed information on architecture, training methodology, performance benchmarks, and inference optimizations, visit [our blog](https://www.sarvam.ai/blogs/sarvam-30b-105b).
+
+## Model Specifications
+- Model ID: sarvam-30b
+- Total Parameters: 30B (2.4B active per token)
+- Architecture: MoE Transformer with GQA and 128 sparse experts
+- Pre-training Data: 16T tokens
+- Temperature range: 0 to 2
+- Top-p range: 0 to 1
+- Supports streaming and non-streaming responses
+- OpenAI-compatible chat completions format
+- License: Apache 2.0
+
+```
+sarvam-30b
+```
+
+## Key Capabilities
+###### Basic Chat Completion
+
+###### Multi-turn Conversation
+
+###### Streaming
+Simple, one-turn interaction where the user asks a question and the model replies with a single, direct response.
+
+```
+[data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}1from sarvamai import SarvamAI23client = SarvamAI(4 api_subscription_key="YOUR_SARVAM_API_KEY",5)67response = client.chat.completions(8 model="sarvam-30b",9 messages=[10 {"role": "user", "content": "Explain the significance of the Indian monsoon season."}11 ],12 temperature=0.5,13 top_p=1,14 max_tokens=1000,15)1617print(response.choices[0].message.content)
+```
+
+## Next Steps
+[Developer quickstartLearn how to integrate chat completion into your application.](https://docs.sarvam.ai/api-reference-docs/api-guides-tutorials/chat-completion)
+Learn how to integrate chat completion into your application.
+[API ReferenceComplete API documentation for chat completion endpoints.](https://docs.sarvam.ai/api-reference-docs/chat/chat-completions)
+Complete API documentation for chat completion endpoints.
+[Previous](https://docs.sarvam.ai/api-reference-docs/getting-started/models/sarvam-translate)
+[Sarvam-105BNext](https://docs.sarvam.ai/api-reference-docs/getting-started/models/sarvam-105b)
+
+#### Sarvam-105B
+Sarvam-105B
+[Built with](https://buildwithfern.com/?utm_campaign=buildWith&utm_medium=docs&utm_source=docs.sarvam.ai)
+[.fa-secondary{opacity:.4}Community](https://discord.com/invite/5rAsykttcs)
+[.fa-secondary{opacity:.4}API Status](https://status.sarvam.ai/)
+[.fa-secondary{opacity:.4}API Pricing](https://docs.sarvam.ai/api-reference-docs/getting-started/pricing)
+[Sign Up](https://dashboard.sarvam.ai/)

@@ -33,8 +33,7 @@ class IdeaScorerService:
         try:
             prompt = self._build_scoring_prompt(idea, wizard_input)
             
-            response = self.client.chat.completions.create(
-                model=self.model,
+            response = create_chat_completion(
                 messages=[
                     {"role": "system", "content": self._get_system_prompt()},
                     {"role": "user", "content": prompt}

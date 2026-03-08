@@ -8,7 +8,13 @@
 
 @layer base {
     body {
-        @apply antialiased overflow-hidden font-sans;
+        @apply antialiased font-sans;
+        /* overflow: hidden removed — was the #1 mobile scroll bug */
+    }
+
+    * {
+        /* Disable default tap highlight on mobile */
+        -webkit-tap-highlight-color: transparent;
     }
 }
 

@@ -5,7 +5,7 @@ import sys
 # Add parent directory to path for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from utils.openai_helper import get_openai_client
+from utils.openai_helper import get_openai_client, get_model_name
 
 class KeywordExtractor:
     def __init__(self):
@@ -31,7 +31,7 @@ class KeywordExtractor:
         
         try:
             response = self.client.chat.completions.create(
-                model="gpt-4o",  # Using gpt-4o for speed and accuracy
+                model=get_model_name(),  # was hardcoded to gpt-4o
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.3,
                 max_tokens=100

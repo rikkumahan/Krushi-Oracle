@@ -5,7 +5,7 @@ Generates export artifacts: Lean Canvas, One-Pager, Pitch Outline
 
 from typing import Dict, Optional
 from models.schemas import StartupIdea
-from utils.openai_helper import get_openai_client, get_model_name
+from utils.openai_helper import get_openai_client, get_model_name, create_chat_completion
 from services.explanatory.strategic_audit_agent import StrategicTools
 from services.idea_scorer_v2.engine import ScoringResult
 from utils.redis_cache import safe_cache_get, CacheKey
@@ -94,8 +94,7 @@ class CanvasGeneratorService:
         Return a JSON object: {{"moat": "...", "risk": "...", "adopter": "..."}}
         """
         
-        response = self.client.chat.completions.create(
-            model=self.model,
+        response = create_chat_completion(
             messages=[{"role": "user", "content": prompt}],
             response_format={"type": "json_object"},
             temperature=0.3
@@ -133,8 +132,7 @@ class CanvasGeneratorService:
         }}
         """
         
-        response = self.client.chat.completions.create(
-            model=self.model,
+        response = create_chat_completion(
             messages=[{"role": "user", "content": prompt}],
             response_format={"type": "json_object"},
             temperature=0.5

@@ -404,7 +404,11 @@ class StrategicTools:
         if not method:
             raise ValueError(f"Unknown tool: {tool_name}")
         
-        return method(**arguments)
+        # Sanitize arguments: Sarvam.ai sometimes returns {"": ""} instead of {}
+        # for tools with no required parameters, causing unexpected kwarg errors.
+        clean_arguments = {k: v for k, v in arguments.items() if k}
+        
+        return method(**clean_arguments)
 
 
 # ==================== Strategic Audit Agent ====================

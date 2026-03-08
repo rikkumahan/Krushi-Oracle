@@ -41,7 +41,7 @@ ai-service:
 
 # CORS Configuration
 cors:
-  allowed-origins: http://localhost:5173,http://localhost:3000
+  allowed-origins: http://localhost:5173,http://localhost:3000,https://*.trycloudflare.com
 
 # Logging
 logging:
